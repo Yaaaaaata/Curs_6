@@ -1,0 +1,33 @@
+{% extends 'newsletter/base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block pricing-header %}
+    <div class="col-md-4">
+        <h2>Посты блога</h2>
+        {% for blogpost in random_posts %}
+            <div class="card mb-4">
+                <img src="{{ blog_post.image.url }}" class="card-img-top" alt="{{ blogpost.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ blogpost.title }}</h5>
+                    <p class="card-text">{{ blogpost.content }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+        {% if user.is_manager %}
+            <a href="{% url 'blogpost_form' %}" class="btn btn-primary">Добавить пост блога</a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h2>Статистика рассылок</h2>
+    <p>Количество рассылок всего: {{ newsletter }}</p>
+    <p>Количество активных рассылок: {{ started_newsletter }}</p>
+    <p>Количество уникальных клиентов для рассылок: {{ client }}</p>
+{% endblock %}

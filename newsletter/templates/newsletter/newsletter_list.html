@@ -1,0 +1,22 @@
+{% extends 'newsletter/base.html' %}
+
+{% block content %}
+    <h1>Список рассылок</h1>
+    <ul>
+        {% for newsletter in newsletters %}
+            <li>
+                Клиенты:
+                <ul>
+                    {% for client in newsletter.recipients.all %}
+                        <li>{{ client.full_name }} - {{ client.email }}</li>
+                    {% endfor %}
+                </ul>
+                Сообщение: {{ newsletter.message.subject }} - {{ newsletter.message.body }}<br>
+                Интервал: {{ newsletter.get_interval_display }}<br>
+                Дата и время начала рассылки: {{ newsletter.send_time }}<br>
+                Статус: {{ newsletter.status }}
+                <a href="{% url 'newsletter_confirm_delete' newsletter.pk %}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

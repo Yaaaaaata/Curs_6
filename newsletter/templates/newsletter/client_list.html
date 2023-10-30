@@ -1,0 +1,15 @@
+{% extends 'newsletter/base.html' %}
+
+{% block content %}
+    <h1>Список клиентов</h1>
+    <ul>
+        {% for client in clients %}
+            <li>{{ client.full_name }} - {{ client.email }}
+                <a href="{% url 'client_detail' client.id %}">Подробнее</a>
+                <a href="{% url 'client_confirm_delete' client.id %}">Удалить</a>
+            </li>
+        {% empty %}
+            <li>Нет клиентов</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

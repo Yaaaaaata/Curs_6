@@ -1,0 +1,29 @@
+{% extends 'newsletter/base.html' %}
+
+{% block content %}
+    <h1>Список сообщений</h1>
+    <ul>
+        {% for message in messages %}
+            <li>{{ message.subject }} - {{ message.body|truncatechars:50 }}
+                <a href="#" class="show-full-text">Открыть</a>
+                <div class="full-text" style="display: none;">{{ message.body }}</div>
+                <a href="{% url 'message_update' pk=message.pk %}">Редактировать</a>
+                <a href="{% url 'message_confirm_delete' pk=message.pk %}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var showFullTextLinks = document.getElementsByClassName('show-full-text');
+            for (var i = 0; i < showFullTextLinks.length; i++) {
+                showFullTextLinks[i].addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var fullText = this.nextElementSibling;
+                    fullText.style.display = 'block';
+                    this.style.display = 'none';
+                });
+            }
+        });
+    </script>
+{% endblock %}

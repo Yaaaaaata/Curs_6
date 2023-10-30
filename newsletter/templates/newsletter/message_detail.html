@@ -1,0 +1,9 @@
+{% extends 'newsletter/base.html' %}
+
+{% block content %}
+    <h1>Подробнее</h1>
+    <p>Тема: {{ message.subject }}</p>
+    <p>Текс: {{ message.body }}</p>
+
+    <a href="{% url 'message_list' %}">Вернуться к списку сообщений</a>
+{% endblock %}

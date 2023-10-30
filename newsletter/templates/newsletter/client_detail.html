@@ -1,0 +1,9 @@
+{% extends 'newsletter/base.html' %}
+
+{% block content %}
+    <h1>Карточка клиента</h1>
+    <p>ФИО: {{ client.full_name }}</p>
+    <p>Email: {{ client.email }}</p>
+    <p>Комментарий: {{ client.comment }}</p>
+    <a href="{% url 'client_list' %}">Назад</a>
+{% endblock %}

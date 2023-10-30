@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Подробнее</h1>
+    <p>Name: {{ newsletter.name }}</p>
+    <p>Start Time: {{ newsletter.send_time }}</p>
+    <p>End Time: {{ newsletter.interval }}</p>
+    <h2>Clients:</h2>
+    <ul>
+        {% for client in newsletter.clients.all %}
+            <li>{{ client.full_name }} - {{ client.email }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

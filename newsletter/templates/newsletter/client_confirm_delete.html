@@ -1,0 +1,11 @@
+{% extends 'newsletter/base.html' %}
+
+{% block content %}
+    <h1>Удалить клиента</h1>
+    <p>Вы точно уверены, что хотите удалить клиента "{{ client.full_name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Да</button>
+        <a href="{% url 'client_list' %}">Нет</a>
+    </form>
+{% endblock %}
